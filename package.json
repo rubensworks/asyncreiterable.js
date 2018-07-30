@@ -1,0 +1,69 @@
+{
+  "name": "asyncreiterable",
+  "version": "2.1.0",
+  "description": "An AsyncIterator for taking the union of different AsyncIterators",
+  "main": "index.js",
+  "typings": "index",
+  "repository": "git@github.com:rubensworks/asyncreiterable.js.git",
+  "keywords": [
+    "asynciterator",
+    "union",
+    "roundrobin"
+  ],
+  "author": "Ruben Taelman <ruben.taelman@ugent.be>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rubensworks/asyncreiterable.js/issues"
+  },
+  "homepage": "https://github.com/rubensworks/asyncreiterable.js#readme",
+  "files": [
+    "lib/**/*.d.ts",
+    "lib/**/*.js",
+    "index.d.ts",
+    "index.js"
+  ],
+  "dependencies": {
+    "asynciterator": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/asynciterator": "^1.1.1",
+    "@types/jest": "^23.3.0",
+    "arrayify-stream": "^1.0.0",
+    "coveralls": "^3.0.0",
+    "jest": "^23.4.1",
+    "pre-commit": "^1.2.2",
+    "ts-jest": "^23.0.1",
+    "tslint": "^5.8.0",
+    "tslint-eslint-rules": "^5.3.1",
+    "typescript": "^2.6.2"
+  },
+  "pre-commit": [
+    "build",
+    "lint",
+    "test"
+  ],
+  "jest": {
+    "transform": {
+      "^.+\\.ts$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
+    ],
+    "testRegex": "(/test/.*|(\\.|/)(test|spec))\\.ts$",
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "collectCoverage": true,
+    "testEnvironment": "node"
+  },
+  "scripts": {
+    "test": "jest ${1}",
+    "test-watch": "jest ${1} --watch",
+    "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls",
+    "lint": "tslint index.ts lib/**/*.ts test/**/*.ts --exclude '**/*.d.ts'",
+    "build": "tsc",
+    "validate": "npm ls",
+    "prepare": "npm run build"
+  }
+}
