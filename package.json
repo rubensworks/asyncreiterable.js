@@ -7,8 +7,11 @@
   "repository": "git@github.com:rubensworks/asyncreiterable.js.git",
   "keywords": [
     "asynciterator",
-    "union",
-    "roundrobin"
+    "asyncreiterable",
+    "async",
+    "iteration",
+    "iterator",
+    "append-only"
   ],
   "author": "Ruben Taelman <ruben.taelman@ugent.be>",
   "license": "MIT",
