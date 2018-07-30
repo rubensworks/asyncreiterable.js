@@ -1,7 +1,7 @@
 {
   "name": "asyncreiterable",
-  "version": "2.1.0",
-  "description": "An AsyncIterator for taking the union of different AsyncIterators",
+  "version": "1.0.0",
+  "description": "An AsyncReiterable is an append-only collection that allows multiple asynchronous iterations.",
   "main": "index.js",
   "typings": "index",
   "repository": "git@github.com:rubensworks/asyncreiterable.js.git",
