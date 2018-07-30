@@ -79,7 +79,7 @@ iterable.push(3);
 iterable.push(4);
 iterable.push(null);
 
-# Output:
+# Output from both iterators:
 #   1
 #   2
 #   3
