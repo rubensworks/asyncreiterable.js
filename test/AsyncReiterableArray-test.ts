@@ -4,11 +4,11 @@ const arrayifyStream = require('arrayify-stream');
 
 describe('AsyncReiterableArray', () => {
 
-  describe('#forFixedData should return iterables that', () => {
+  describe('#fromFixedData should return iterables that', () => {
     let iterable;
 
     beforeEach(() => {
-      iterable = AsyncReiterableArray.forFixedData([1, 2, 3]);
+      iterable = AsyncReiterableArray.fromFixedData([1, 2, 3]);
     });
 
     it('should be instance of AsyncReiterableArray', () => {
@@ -32,11 +32,11 @@ describe('AsyncReiterableArray', () => {
     });
   });
 
-  describe('#forInitialData should return iterables that', () => {
+  describe('#fromInitialData should return iterables that', () => {
     let iterable;
 
     beforeEach(() => {
-      iterable = AsyncReiterableArray.forInitialData([1, 2, 3]);
+      iterable = AsyncReiterableArray.fromInitialData([1, 2, 3]);
     });
 
     it('should be instance of AsyncReiterableArray', () => {
@@ -106,11 +106,11 @@ describe('AsyncReiterableArray', () => {
     });
   });
 
-  describe('#forInitialEmpty should return iterables that', () => {
+  describe('#fromInitialEmpty should return iterables that', () => {
     let iterable;
 
     beforeEach(() => {
-      iterable = AsyncReiterableArray.forInitialEmpty();
+      iterable = AsyncReiterableArray.fromInitialEmpty();
     });
 
     it('should be instance of AsyncReiterableArray', () => {

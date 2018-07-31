@@ -23,7 +23,7 @@ export class AsyncReiterableArray<T> implements AsyncReiterable<T> {
    * @param {T[]} array An array of data elements.
    * @return {AsyncReiterableArray<T>} A new ended {@link AsyncReiterableArray} with the given data elements.
    */
-  public static forFixedData<T>(array: T[]): AsyncReiterableArray<T> {
+  public static fromFixedData<T>(array: T[]): AsyncReiterableArray<T> {
     return new AsyncReiterableArray(array, true);
   }
 
@@ -33,15 +33,15 @@ export class AsyncReiterableArray<T> implements AsyncReiterable<T> {
    * @param {T[]} initialData An array of initial data elements.
    * @return {AsyncReiterableArray<T>} A new open-ended {@link AsyncReiterableArray} with the given data elements.
    */
-  public static forInitialData<T>(initialData: T[]): AsyncReiterableArray<T> {
+  public static fromInitialData<T>(initialData: T[]): AsyncReiterableArray<T> {
     return new AsyncReiterableArray(initialData, false);
   }
 
   /**
    * @return {AsyncReiterableArray<T>} A new open-ended {@link AsyncReiterableArray} without data elements.
    */
-  public static forInitialEmpty<T>(): AsyncReiterableArray<T> {
-    return AsyncReiterableArray.forInitialData([]);
+  public static fromInitialEmpty<T>(): AsyncReiterableArray<T> {
+    return AsyncReiterableArray.fromInitialData([]);
   }
 
   protected static pushToIterator<T>(iterator: BufferedIterator<T>, data: T) {

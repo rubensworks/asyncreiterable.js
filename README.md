@@ -30,13 +30,13 @@ It can be constructed in different ways through the following static methods:
 import {AsyncReiterableArray} from "asyncreiterable";
 
 # Creates an ended AsyncReiterable with the given data elements
-AsyncReiterableArray.forFixedData([1, 2, 3])
+AsyncReiterableArray.fromFixedData([1, 2, 3])
 
 # Creates an open-ended AsyncReiterable with the given initial data elements
-AsyncReiterableArray.forInitialData([1, 2, 3])
+AsyncReiterableArray.fromInitialData([1, 2, 3])
 
 # Creates an open-ended AsyncReiterable with no initial data elements
-AsyncReiterableArray.forInitialEmpty()
+AsyncReiterableArray.fromInitialEmpty()
 ```
 
 ### Appending
@@ -47,7 +47,7 @@ no data elements can be removed.
 The iterable becomes _ended_ when `null` is pushed.
 
 ```javascript
-const iterable = AsyncReiterableArray.forInitialData([1, 2, 3])
+const iterable = AsyncReiterableArray.fromInitialData([1, 2, 3])
 
 # Add data elements
 iterable.push(4);
@@ -67,7 +67,7 @@ that will contains all current and future data elements in this `AsyncReiterable
 It will be ended once the `AsyncReiterable` is ended.
 
 ```javascript
-const iterable = AsyncReiterableArray.forInitialData([1, 2])
+const iterable = AsyncReiterableArray.fromInitialData([1, 2])
 
 const it1 = iterable.iterator();
 const it2 = iterable.iterator();
