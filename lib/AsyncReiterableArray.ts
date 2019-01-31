@@ -10,7 +10,7 @@ export class AsyncReiterableArray<T> implements AsyncReiterable<T> {
   private readonly iterators: BufferedIterator<T>[];
 
   protected constructor(array: T[], terminate?: boolean) {
-    this.array = array;
+    this.array = array.slice();
     this.iterators = [];
     if (terminate) {
       this.array.push(null);
