@@ -16,7 +16,7 @@ export interface AsyncReiterable<T> {
    * If the data is `null`, then the collection will become ended.
    * @param {T} data A new data element, or `null` if the collection should be ended.
    */
-  push(data: T): void;
+  push(data: T | null): void;
 
   /**
    * @return {boolean} If this collection accepts to new data elements anymore.

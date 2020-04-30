@@ -6,7 +6,7 @@ import {AsyncReiterable} from "./AsyncReiterable";
  */
 export class AsyncReiterableArray<T> implements AsyncReiterable<T> {
 
-  private readonly array: T[];
+  private readonly array: (T | null)[];
   private readonly iterators: BufferedIterator<T>[];
 
   protected constructor(array: T[], terminate?: boolean) {
@@ -54,7 +54,7 @@ export class AsyncReiterableArray<T> implements AsyncReiterable<T> {
 
   public iterator(): AsyncIterator<T> {
     if (this.isEnded()) {
-      return new ArrayIterator(this.array.slice(0, this.array.length - 1));
+      return new ArrayIterator(<T[]> <any> this.array.slice(0, this.array.length - 1));
     }
     const iterator: BufferedIterator<T> = new BufferedIterator<T>();
     for (const data of this.array) {
@@ -64,7 +64,7 @@ export class AsyncReiterableArray<T> implements AsyncReiterable<T> {
     return iterator;
   }
 
-  public push(data: T): void {
+  public push(data: T | null): void {
     if (this.isEnded()) {
       throw new Error('Can not push data anymore into an AsyncReiterableArray after it has been terminated.');
     }
