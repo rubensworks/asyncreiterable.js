@@ -88,9 +88,30 @@ describe('AsyncReiterableArray', () => {
       expect(it.read()).toBe(null);
 
       expect(iterable.isEnded()).toBe(true);
-      return expect(await new Promise((resolve, reject) => {
-        it.on('end', () => resolve(true));
-      })).toBeTruthy();
+    });
+
+    it('iterator() should end in flow-mode after the iterable becomes ended', async () => {
+      const it = iterable.iterator();
+      expect(it.read()).toBe(1);
+      expect(it.read()).toBe(2);
+      expect(it.read()).toBe(3);
+      expect(it.read()).toBe(null);
+
+      iterable.push(10);
+      iterable.push(null);
+
+      const dataCb = jest.fn();
+      const endCb = jest.fn();
+      it.on('data', dataCb);
+      it.on('end', endCb);
+
+      await new Promise(setImmediate);
+
+      expect(dataCb).toHaveBeenCalledWith(10);
+      expect(dataCb).toHaveBeenCalledTimes(1);
+      expect(endCb).toHaveBeenCalledTimes(1);
+
+      expect(iterable.isEnded()).toBe(true);
     });
 
     it('iterator() contain all expected data elements for new iterators created after being ended', async () => {
@@ -156,9 +177,6 @@ describe('AsyncReiterableArray', () => {
       expect(it.read()).toBe(null);
 
       expect(iterable.isEnded()).toBe(true);
-      return expect(await new Promise((resolve, reject) => {
-        it.on('end', () => resolve(true));
-      })).toBeTruthy();
     });
 
     it('iterator() contain all expected data elements for new iterators created after being ended', async () => {

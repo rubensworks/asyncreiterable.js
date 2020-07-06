@@ -41,22 +41,22 @@ export class AsyncReiterableArray<T> implements AsyncReiterable<T> {
    * @return {AsyncReiterableArray<T>} A new open-ended {@link AsyncReiterableArray} without data elements.
    */
   public static fromInitialEmpty<T>(): AsyncReiterableArray<T> {
-    return AsyncReiterableArray.fromInitialData([]);
+    return AsyncReiterableArray.fromInitialData(<T[]> []);
   }
 
-  protected static pushToIterator<T>(iterator: BufferedIterator<T>, data: T) {
+  protected static pushToIterator<T>(iterator: BufferedIterator<T>, data: T | null) {
     if (data === null) {
       iterator.close();
     } else {
-      iterator._push(data);
+      (<any> iterator)._push(data); // Beware: this is a hack
     }
   }
 
   public iterator(): AsyncIterator<T> {
     if (this.isEnded()) {
-      return new ArrayIterator(<T[]> <any> this.array.slice(0, this.array.length - 1));
+      return new ArrayIterator(<T[]> <any> this.array.slice(0, this.array.length - 1), { autoStart: false });
     }
-    const iterator: BufferedIterator<T> = new BufferedIterator<T>();
+    const iterator: BufferedIterator<T> = new BufferedIterator<T>({ autoStart: false });
     for (const data of this.array) {
       AsyncReiterableArray.pushToIterator(iterator, data);
     }
