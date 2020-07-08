@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+<a name="v2.0.0"></a>
+## [v2.0.0](https://github.com/rubensworks/asyncreiterable.js/compare/v1.2.0...v2.0.0) - 2020-07-08
+
+### Changed
+* [Update to asynciterator 3](https://github.com/rubensworks/asyncreiterable.js/commit/b637b26648dd0306927012bdbc25185eb6209b1c)
+
 <a name="v1.2.0"></a>
 ## [v1.2.0](https://github.com/rubensworks/asyncreiterable.js/compare/v1.1.1...v1.2.0) - 2020-04-30
 
