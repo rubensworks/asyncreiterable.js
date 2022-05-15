@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@types/jest": "^26.0.0",
-    "arrayify-stream": "^1.0.0",
+    "arrayify-stream": "^2.0.0",
     "coveralls": "^3.0.0",
     "jest": "^26.0.0",
     "manual-git-changelog": "^1.0.1",
