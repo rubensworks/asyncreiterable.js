@@ -29,13 +29,13 @@
     "asynciterator": "^3.0.0"
   },
   "devDependencies": {
-    "@types/jest": "^28.0.0",
+    "@types/jest": "^30.0.0",
     "arrayify-stream": "^2.0.0",
     "coveralls": "^3.0.0",
-    "jest": "^28.0.0",
+    "jest": "^30.0.0",
     "manual-git-changelog": "^1.0.1",
     "pre-commit": "^1.2.2",
-    "ts-jest": "^28.0.0",
+    "ts-jest": "^29.0.0",
     "tslint": "^6.0.0",
     "tslint-eslint-rules": "^5.3.1",
     "typescript": "^4.0.0"
