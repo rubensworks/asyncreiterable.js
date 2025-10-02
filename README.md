@@ -1,8 +1,9 @@
 # AsyncReiterable
 
-[![Build Status](https://travis-ci.org/rubensworks/asyncreiterable.js.svg?branch=master)](https://travis-ci.org/rubensworks/asyncreiterable.js)
+[![Build status](https://github.com/rubensworks/asyncreiterable.js/workflows/CI/badge.svg)](https://github.com/rubensworks/asyncreiterable.js/actions?query=workflow%3ACI)
 [![Coverage Status](https://coveralls.io/repos/github/rubensworks/asyncreiterable.js/badge.svg?branch=master)](https://coveralls.io/github/rubensworks/asyncreiterable.js?branch=master)
 [![npm version](https://badge.fury.io/js/asyncreiterable.svg)](https://www.npmjs.com/package/asyncreiterable)
+
 An `AsyncReiterable` is an append-only collection that allows _multiple asynchronous iterations_.
 
 Each time the `iterator()` method of this `AsyncReiterable` is called,
@@ -28,13 +29,13 @@ It can be constructed in different ways through the following static methods:
 ```javascript
 import {AsyncReiterableArray} from "asyncreiterable";
 
-# Creates an ended AsyncReiterable with the given data elements
+// Creates an ended AsyncReiterable with the given data elements
 AsyncReiterableArray.fromFixedData([1, 2, 3])
 
-# Creates an open-ended AsyncReiterable with the given initial data elements
+// Creates an open-ended AsyncReiterable with the given initial data elements
 AsyncReiterableArray.fromInitialData([1, 2, 3])
 
-# Creates an open-ended AsyncReiterable with no initial data elements
+// Creates an open-ended AsyncReiterable with no initial data elements
 AsyncReiterableArray.fromInitialEmpty()
 ```
 
@@ -46,14 +47,14 @@ no data elements can be removed.
 The iterable becomes _ended_ when `null` is pushed.
 
 ```javascript
-const iterable = AsyncReiterableArray.fromInitialData([1, 2, 3])
+const iterable = AsyncReiterableArray.fromInitialData([1, 2, 3]);
 
-# Add data elements
+// Add data elements
 iterable.push(4);
 iterable.push(5);
 iterable.push(6);
 
-# End the iterable
+// End the iterable
 iterable.push(null);
 ```
 
@@ -78,11 +79,11 @@ iterable.push(3);
 iterable.push(4);
 iterable.push(null);
 
-# Output from both iterators:
-#   1
-#   2
-#   3
-#   4
+// Output from both iterators:
+//   1
+//   2
+//   3
+//   4
 ```
 
 ## License

@@ -1,14 +1,14 @@
-import {ArrayIterator, BufferedIterator} from "asynciterator";
-import {AsyncReiterableArray} from "../lib/AsyncReiterableArray";
-const arrayifyStream = require('arrayify-stream');
+import { arrayifyStream } from 'arrayify-stream';
+import { ArrayIterator, BufferedIterator } from 'asynciterator';
+import type { AsyncReiterable } from '../lib/AsyncReiterable';
+import { AsyncReiterableArray } from '../lib/AsyncReiterableArray';
 
 describe('AsyncReiterableArray', () => {
-
   describe('#fromFixedData should return iterables that', () => {
-    let iterable;
+    let iterable: AsyncReiterable<number>;
 
     beforeEach(() => {
-      iterable = AsyncReiterableArray.fromFixedData([1, 2, 3]);
+      iterable = AsyncReiterableArray.fromFixedData([ 1, 2, 3 ]);
     });
 
     it('should be instance of AsyncReiterableArray', () => {
@@ -19,8 +19,8 @@ describe('AsyncReiterableArray', () => {
       return expect(iterable.iterator()).toBeInstanceOf(ArrayIterator);
     });
 
-    it('iterator() contain all expected data elements', async () => {
-      return expect(await arrayifyStream(iterable.iterator())).toEqual([1, 2, 3]);
+    it('iterator() contain all expected data elements', async() => {
+      expect(await arrayifyStream(iterable.iterator())).toEqual([ 1, 2, 3 ]);
     });
 
     it('should not allow push to be called', () => {
@@ -33,10 +33,10 @@ describe('AsyncReiterableArray', () => {
   });
 
   describe('#fromInitialData should return iterables that', () => {
-    let iterable;
+    let iterable: AsyncReiterable<number>;
 
     beforeEach(() => {
-      iterable = AsyncReiterableArray.fromInitialData([1, 2, 3]);
+      iterable = AsyncReiterableArray.fromInitialData([ 1, 2, 3 ]);
     });
 
     it('should be instance of AsyncReiterableArray', () => {
@@ -74,7 +74,7 @@ describe('AsyncReiterableArray', () => {
       return expect(() => iterable.push(null)).toThrow();
     });
 
-    it('iterator() should end after the iterable becomes ended', async () => {
+    it('iterator() should end after the iterable becomes ended', async() => {
       const it = iterable.iterator();
       expect(it.read()).toBe(1);
       expect(it.read()).toBe(2);
@@ -90,7 +90,7 @@ describe('AsyncReiterableArray', () => {
       expect(iterable.isEnded()).toBe(true);
     });
 
-    it('iterator() should end in flow-mode after the iterable becomes ended', async () => {
+    it('iterator() should end in flow-mode after the iterable becomes ended', async() => {
       const it = iterable.iterator();
       expect(it.read()).toBe(1);
       expect(it.read()).toBe(2);
@@ -114,21 +114,21 @@ describe('AsyncReiterableArray', () => {
       expect(iterable.isEnded()).toBe(true);
     });
 
-    it('iterator() contain all expected data elements for new iterators created after being ended', async () => {
+    it('iterator() contain all expected data elements for new iterators created after being ended', async() => {
       iterable.push(10);
       iterable.push(null);
-      return expect(await arrayifyStream(iterable.iterator())).toEqual([1, 2, 3, 10]);
+      expect(await arrayifyStream(iterable.iterator())).toEqual([ 1, 2, 3, 10 ]);
     });
 
-    it('iterator() should return ArrayIterators for new iterators created after being ended', async () => {
+    it('iterator() should return ArrayIterators for new iterators created after being ended', async() => {
       iterable.push(10);
       iterable.push(null);
-      return expect(iterable.iterator()).toBeInstanceOf(ArrayIterator);
+      expect(iterable.iterator()).toBeInstanceOf(ArrayIterator);
     });
   });
 
   describe('#fromInitialEmpty should return iterables that', () => {
-    let iterable;
+    let iterable: AsyncReiterable<number>;
 
     beforeEach(() => {
       iterable = AsyncReiterableArray.fromInitialEmpty();
@@ -166,7 +166,7 @@ describe('AsyncReiterableArray', () => {
       return expect(() => iterable.push(null)).toThrow();
     });
 
-    it('iterator() should end after the iterable becomes ended', async () => {
+    it('iterator() should end after the iterable becomes ended', async() => {
       const it = iterable.iterator();
       expect(it.read()).toBe(null);
 
@@ -179,16 +179,16 @@ describe('AsyncReiterableArray', () => {
       expect(iterable.isEnded()).toBe(true);
     });
 
-    it('iterator() contain all expected data elements for new iterators created after being ended', async () => {
+    it('iterator() contain all expected data elements for new iterators created after being ended', async() => {
       iterable.push(10);
       iterable.push(null);
-      return expect(await arrayifyStream(iterable.iterator())).toEqual([10]);
+      expect(await arrayifyStream(iterable.iterator())).toEqual([ 10 ]);
     });
 
-    it('iterator() should return ArrayIterators for new iterators created after being ended', async () => {
+    it('iterator() should return ArrayIterators for new iterators created after being ended', async() => {
       iterable.push(10);
       iterable.push(null);
-      return expect(iterable.iterator()).toBeInstanceOf(ArrayIterator);
+      expect(iterable.iterator()).toBeInstanceOf(ArrayIterator);
     });
   });
 });

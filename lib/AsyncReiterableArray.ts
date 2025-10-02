@@ -1,16 +1,16 @@
-import {ArrayIterator, AsyncIterator, BufferedIterator} from "asynciterator";
-import {AsyncReiterable} from "./AsyncReiterable";
+import type { AsyncIterator } from 'asynciterator';
+import { ArrayIterator, BufferedIterator } from 'asynciterator';
+import type { AsyncReiterable } from './AsyncReiterable';
 
 /**
  * An {@link AsyncReiterable} that is backed by an array.
  */
 export class AsyncReiterableArray<T> implements AsyncReiterable<T> {
-
   private readonly array: (T | null)[];
   private readonly iterators: BufferedIterator<T>[];
 
   protected constructor(array: T[], terminate?: boolean) {
-    this.array = array.slice();
+    this.array = [ ...array ];
     this.iterators = [];
     if (terminate) {
       this.array.push(null);
@@ -44,17 +44,18 @@ export class AsyncReiterableArray<T> implements AsyncReiterable<T> {
     return AsyncReiterableArray.fromInitialData(<T[]> []);
   }
 
-  protected static pushToIterator<T>(iterator: BufferedIterator<T>, data: T | null) {
+  protected static pushToIterator<T>(iterator: BufferedIterator<T>, data: T | null): void {
     if (data === null) {
       iterator.close();
     } else {
-      (<any> iterator)._push(data); // Beware: this is a hack
+      // Beware: this is a hack
+      (<any> iterator)._push(data);
     }
   }
 
   public iterator(): AsyncIterator<T> {
     if (this.isEnded()) {
-      return new ArrayIterator(<T[]> <any> this.array.slice(0, this.array.length - 1), { autoStart: false });
+      return new ArrayIterator(<T[]> <any> this.array.slice(0, -1), { autoStart: false });
     }
     const iterator: BufferedIterator<T> = new BufferedIterator<T>({ autoStart: false });
     for (const data of this.array) {
@@ -75,7 +76,6 @@ export class AsyncReiterableArray<T> implements AsyncReiterable<T> {
   }
 
   public isEnded(): boolean {
-    return this.array.length > 0 && this.array[this.array.length - 1] === null;
+    return this.array.length > 0 && this.array.at(-1) === null;
   }
-
 }
