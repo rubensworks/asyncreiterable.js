@@ -29,7 +29,7 @@
     "asynciterator": "^3.10.0"
   },
   "devDependencies": {
-    "@rubensworks/eslint-config": "^1.0.0",
+    "@rubensworks/eslint-config": "^3.0.0",
     "@types/jest": "^30.0.0",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
