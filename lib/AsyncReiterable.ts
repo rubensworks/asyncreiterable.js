@@ -3,7 +3,7 @@ import type { AsyncIterator } from 'asynciterator';
 /**
  * An append-only data collection that can be iterated asynchronously multiple times.
  */
-// eslint-disable-next-line @typescript-eslint/naming-convention
+// eslint-disable-next-line ts/naming-convention
 export interface AsyncReiterable<T> {
 
   /**
